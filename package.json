@@ -1,0 +1,19 @@
+{
+	"name": "dom-screen",
+	"type": "module",
+	"version": "0.0.1",
+	"author": "Joe Schafer",
+	"license": "MIT",
+	"description": "Straightforward DOM testing library for React, Vue, Svelte, and friends.",
+	"dependencies": {},
+	"devDependencies": {
+		"@happy-dom/global-registrator": "18.0.1",
+		"@types/react": "19.1.8",
+		"@types/react-dom": "19.1.0",
+		"happy-dom": "18.0.1",
+		"pretty-format": "29.7.0",
+		"react": "19.1.0",
+		"react-dom": "19.1.0",
+		"typescript": "5.8.3"
+	}
+}

@@ -1,0 +1,27 @@
+{
+	"include": ["**/*"],
+	"exclude": ["node_modules"],
+	"compilerOptions": {
+		"lib": ["ESNext", "dom", "dom.iterable"],
+		"target": "ESNext",
+		"module": "NodeNext",
+		"moduleDetection": "force",
+		"jsx": "preserve",
+		"typeRoots": ["./types"],
+
+		"moduleResolution": "nodenext",
+		"allowImportingTsExtensions": true,
+		"verbatimModuleSyntax": true,
+		"noEmit": true,
+
+		// Best practices
+		"strict": true,
+		"skipLibCheck": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitOverride": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"isolatedModules": true
+	}
+}

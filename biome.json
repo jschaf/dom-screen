@@ -1,0 +1,24 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.0.5/schema.json",
+	"vcs": {
+		"clientKind": "git",
+		"enabled": true,
+		"useIgnoreFile": true,
+		"defaultBranch": "main"
+	},
+	"javascript": {
+		"formatter": {
+			"lineWidth": 100,
+			"quoteStyle": "single",
+			"bracketSameLine": true
+		}
+	},
+	"linter": {
+		"rules": {
+			"nursery": "off",
+			"complexity": {
+				"useLiteralKeys": "off"
+			}
+		}
+	}
+}
