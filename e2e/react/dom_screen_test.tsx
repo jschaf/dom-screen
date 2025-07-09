@@ -1,21 +1,21 @@
 import { DomScreen } from 'dom-screen';
 import React, { act } from 'react';
 
-DomScreen.initTest({ act, expect, afterEach });
+const domScreen = DomScreen.initTest({ act, expect, afterEach });
 
-describe('DomScreen.render', () => {
+describe('domScreen.render', () => {
 	test('simple', () => {
-		const screen = DomScreen.render(<div className="div-cls">Hello, world!</div>);
+		const screen = domScreen.render(<div className="div-cls">Hello, world!</div>);
 		expect(screen.locate('div')).toMatchSelector('.div-cls');
 	});
 
 	test('render twice', () => {
-		DomScreen.render(<div className="div-cls">Hello, world!</div>);
-		DomScreen.render(<div className="div-cls">Hello, world!</div>);
+		domScreen.render(<div className="div-cls">Hello, world!</div>);
+		domScreen.render(<div className="div-cls">Hello, world!</div>);
 	});
 
 	test('screen.locateText', () => {
-		const screen = DomScreen.render(
+		const screen = domScreen.render(
 			<div>
 				top
 				<div>
@@ -28,7 +28,7 @@ describe('DomScreen.render', () => {
 	});
 
 	test('toHaveClass', () => {
-		const screen = DomScreen.render(<div className="div-cls">Hello, world!</div>);
+		const screen = domScreen.render(<div className="div-cls">Hello, world!</div>);
 		expect(screen).toHaveClass('div-cls');
 		expect(screen.locate('.div-cls')).toHaveClass('div-cls');
 		expect(screen.locate('div > div')).not.toHaveClass('div-cls');
@@ -36,7 +36,7 @@ describe('DomScreen.render', () => {
 	});
 
 	test('toMatchSelector', () => {
-		const screen = DomScreen.render(<div className="div-cls">Hello, world!</div>);
+		const screen = domScreen.render(<div className="div-cls">Hello, world!</div>);
 		expect(screen).toMatchSelector('div');
 		expect(screen.locate('div')).toHaveClass('div-cls');
 		expect(screen.locate('div')).toMatchSelector('div');
@@ -45,14 +45,14 @@ describe('DomScreen.render', () => {
 	});
 
 	test('toHaveClass none', () => {
-		const screen = DomScreen.render(<div className="div-cls">Hello, world!</div>);
+		const screen = domScreen.render(<div className="div-cls">Hello, world!</div>);
 		expect(screen).toHaveClass('div-cls');
 		expect(screen).not.toHaveClass('foo');
 		expect(screen.locate('.foo')).not.toHaveClass('div-cls');
 	});
 
 	test('toContainText', () => {
-		const screen = DomScreen.render(<div className="div-cls">Hello, world!</div>);
+		const screen = domScreen.render(<div className="div-cls">Hello, world!</div>);
 		expect(screen).not.toContainText('Hello');
 		expect(screen.locate('div')).toContainText('Hello');
 		expect(screen.locate('div')).toContainText(/^Hello, world!$/);
@@ -61,7 +61,7 @@ describe('DomScreen.render', () => {
 
 	test('fill input', () => {
 		let val = '';
-		const screen = DomScreen.render(
+		const screen = domScreen.render(
 			<input
 				onChange={(e) => {
 					val = e.target.value;
@@ -86,7 +86,7 @@ describe('DomScreen.render', () => {
 				/>
 			);
 		};
-		const screen = DomScreen.render(<Input />);
+		const screen = domScreen.render(<Input />);
 		const input = screen.locate('input');
 		input.press('F');
 		expect(input).toContainText('F');

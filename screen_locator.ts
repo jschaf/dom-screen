@@ -19,7 +19,7 @@ interface LocatorMatcher {
  */
 export class ScreenLocator {
 	private constructor(
-		private readonly act: DomScreenAct,
+		readonly act: DomScreenAct,
 		readonly root: Element,
 		private readonly matchers: LocatorMatcher[],
 	) {}

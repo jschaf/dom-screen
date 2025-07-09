@@ -1,4 +1,3 @@
-import { DomScreen } from './dom_screen.ts';
 import { ScreenLocator } from './screen_locator.ts';
 import { Testing } from './testing.ts';
 
@@ -185,16 +184,10 @@ function toBeInDocument(this: MatcherContext, receiver: unknown): MatcherResult 
 
 /** Asserts that the Jest receiver is a supported type. */
 const verifyReceiver = (receiver: unknown): ScreenLocator => {
-	if (receiver instanceof DomScreen) {
-		return receiver.locate('');
-	}
 	if (receiver instanceof ScreenLocator) {
 		return receiver;
 	}
-	if (receiver instanceof Element) {
-		return ScreenLocator.of(DomScreen.globalAct, receiver);
-	}
-	throw new Error(`Expected receiver to be a DomScreen or ScreenLocator, got ${receiver}`);
+	throw new Error(`Expected receiver to be a ScreenLocator, got ${receiver}`);
 };
 
 const isScreenRoot = (loc: ScreenLocator) => loc.root.tagName === 'DOM-SCREEN';
@@ -218,7 +211,8 @@ const waitForSuccess = <T>(fn: SyncMatcher<T>): CustomMatcher<unknown, T[]> => {
 		const p = new Promise<MatcherResult>((res) => {
 			resolve = res;
 		});
-		await DomScreen.globalAct(async (): Promise<void> => {
+		const loc = verifyReceiver(receiver);
+		await loc.act(async (): Promise<void> => {
 			let result: MatcherResult | undefined;
 			let sleepMillis = 5;
 			for (let i = 0; i < 4; i++) {

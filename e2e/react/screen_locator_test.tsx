@@ -1,11 +1,11 @@
 import { DomScreen, type ScreenLocator } from 'dom-screen';
 import { act } from 'react';
 
-DomScreen.initTest({ act, expect, afterEach });
+const domScreen = DomScreen.initTest({ act, expect, afterEach });
 
 describe('ScreenLocator', () => {
 	test('locate', () => {
-		const screen = DomScreen.render(
+		const screen = domScreen.render(
 			<div>
 				<p>Hi</p>
 			</div>,
@@ -16,7 +16,7 @@ describe('ScreenLocator', () => {
 	});
 
 	test('locateRole', () => {
-		const screen = DomScreen.render(
+		const screen = domScreen.render(
 			<div>
 				{/* biome-ignore lint/a11y/noRedundantRoles: find by role */}
 				<input type="button" tabIndex={0} role="button" />
@@ -27,7 +27,7 @@ describe('ScreenLocator', () => {
 	});
 
 	test('locateText', () => {
-		const screen = DomScreen.render(
+		const screen = domScreen.render(
 			<div>
 				Prefix
 				<button type="button">Click me</button>
@@ -38,7 +38,7 @@ describe('ScreenLocator', () => {
 	});
 
 	test('first', () => {
-		const screen = DomScreen.render(
+		const screen = domScreen.render(
 			<div id="id0">
 				<div id="id1">1</div>
 				<div id="id2">2</div>
@@ -49,7 +49,7 @@ describe('ScreenLocator', () => {
 	});
 
 	test('allElements', () => {
-		const screen = DomScreen.render(
+		const screen = domScreen.render(
 			<div id="id0">
 				<div id="id1">1</div>
 				<div id="id2">2</div>
@@ -71,7 +71,7 @@ describe('ScreenLocator', () => {
 	});
 
 	test('filterText', () => {
-		const screen = DomScreen.render(
+		const screen = domScreen.render(
 			<div id="a">
 				alpha
 				<div id="ab">alpha bravo</div>
@@ -92,14 +92,14 @@ describe('ScreenLocator', () => {
 	});
 
 	test('describe', () => {
-		const screen = DomScreen.render(<div />);
+		const screen = domScreen.render(<div />);
 		const loc = screen.locateText('alpha').filterText('bravo').locate('div');
 		const got = loc.describe();
 		expect(got).toEqual(['locateText(alpha)', 'filterText(bravo)', 'locate(div)']);
 	});
 
 	test('formatDescription', () => {
-		const screen = DomScreen.render(<div />);
+		const screen = domScreen.render(<div />);
 		const loc = screen.locateText('alpha').filterText('bravo').locateRole('qux').locate('p > #id');
 		const got = loc.formatDescription();
 		expect(got).toBe(
@@ -108,7 +108,7 @@ describe('ScreenLocator', () => {
 	});
 
 	test('expect.toContainText', () => {
-		const screen = DomScreen.render(
+		const screen = domScreen.render(
 			<div>
 				Prefix <div>Hello</div>
 			</div>,
