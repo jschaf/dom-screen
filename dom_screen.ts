@@ -4,6 +4,8 @@ import * as ReactDOM from 'react-dom/client';
 import { ScreenLocator } from './screen_locator.ts';
 import { screenMatchers } from './screen_matchers.ts';
 
+export { ScreenLocator }
+
 // React act checks for this global to be true.
 declare global {
 	// noinspection JSUnusedGlobalSymbols - global augmentation

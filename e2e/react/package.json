@@ -1,0 +1,20 @@
+{
+	"name": "dom-screen-e2e-react",
+	"private": true,
+	"type": "module",
+	"version": "0.0.1",
+	"author": "Joe Schafer",
+	"license": "MIT",
+	"description": "End-to-end tests for dom-screen.",
+	"devDependencies": {
+		"@happy-dom/global-registrator": "18.0.1",
+		"@types/react": "19.1.8",
+		"@types/react-dom": "19.1.0",
+		"happy-dom": "18.0.1",
+		"dom-screen": "link:dom-screen",
+		"pretty-format": "29.7.0",
+		"react": "19.1.0",
+		"react-dom": "19.1.0",
+		"typescript": "5.8.3"
+	}
+}

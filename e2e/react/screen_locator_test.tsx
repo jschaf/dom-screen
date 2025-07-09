@@ -1,6 +1,5 @@
+import { DomScreen, type ScreenLocator } from 'dom-screen';
 import { act } from 'react';
-import { DomScreen } from './dom_screen.ts';
-import type { ScreenLocator } from './screen_locator.ts';
 
 DomScreen.initTest({ act, expect, afterEach });
 

@@ -1,5 +1,5 @@
+import { DomScreen } from 'dom-screen';
 import React, { act } from 'react';
-import { DomScreen } from './dom_screen.ts';
 
 DomScreen.initTest({ act, expect, afterEach });
 
