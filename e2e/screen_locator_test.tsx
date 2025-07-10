@@ -1,7 +1,13 @@
-import { DomScreen, type ScreenLocator } from 'dom-screen';
-import { act } from 'react';
+import { DomScreen, ScreenLocator, screenMatchers } from 'dom-screen';
+import React from 'react';
+import { reactLifecycle } from './lifecycle.ts';
 
-const domScreen = DomScreen.initTest({ act, expect, afterEach });
+self.IS_REACT_ACT_ENVIRONMENT = true;
+const domScreen = DomScreen.initTest({
+	lifecycle: reactLifecycle,
+	afterEach,
+});
+expect.extend(screenMatchers);
 
 describe('ScreenLocator', () => {
 	test('locate', () => {
@@ -59,15 +65,17 @@ describe('ScreenLocator', () => {
 		assertLocatorMatchesIds(loc, ['id0', 'id1', 'id2']);
 
 		const all = loc.allElements();
-		expect(all[0]).not.toContainText('1');
-		expect(all[1]).toContainText('1');
-		expect(all[1]).not.toContainText('2');
-		expect(all[2]).toContainText('2');
-		expect(all[2]).not.toContainText('1');
+		const wrapElem = (e: Element): ScreenLocator => ScreenLocator.of(screen.act, e);
 
-		expect(all[0]).toMatchSelector('div');
-		expect(all[1]).toMatchSelector('div');
-		expect(all[2]).toMatchSelector('div');
+		expect(wrapElem(all[0])).not.toContainText('1');
+		expect(wrapElem(all[1])).toContainText('1');
+		expect(wrapElem(all[1])).not.toContainText('2');
+		expect(wrapElem(all[2])).toContainText('2');
+		expect(wrapElem(all[2])).not.toContainText('1');
+
+		expect(wrapElem(all[0])).toMatchSelector('div');
+		expect(wrapElem(all[1])).toMatchSelector('div');
+		expect(wrapElem(all[2])).toMatchSelector('div');
 	});
 
 	test('filterText', () => {

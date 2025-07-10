@@ -1,7 +1,13 @@
-import { DomScreen } from 'dom-screen';
-import React, { act } from 'react';
+import { DomScreen, screenMatchers } from 'dom-screen';
+import React from 'react';
+import { reactLifecycle } from './lifecycle.ts';
 
-const domScreen = DomScreen.initTest({ act, expect, afterEach });
+self.IS_REACT_ACT_ENVIRONMENT = true;
+const domScreen = DomScreen.initTest({
+	lifecycle: reactLifecycle,
+	afterEach,
+});
+expect.extend(screenMatchers);
 
 describe('domScreen.render', () => {
 	test('simple', () => {
@@ -97,7 +103,6 @@ describe('domScreen.render', () => {
 	});
 
 	test('cleanup', () => {
-		expect(self.IS_REACT_ACT_ENVIRONMENT).toBe(false);
 		expect(document.body.childNodes.length).toBe(0);
 	});
 });
