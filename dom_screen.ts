@@ -58,7 +58,7 @@ export class DomScreen {
 			throw new Error(`document is not defined. Is jsdom or a similar library installed?`);
 		}
 		const baseElem = document.body;
-		const container = document.createElement('dom-screen');
+		const container = document.createElement('div');
 		baseElem.appendChild(container);
 
 		self.IS_REACT_ACT_ENVIRONMENT = true;
@@ -73,7 +73,9 @@ export class DomScreen {
 			document.title = '';
 		});
 		const strictNode = React.createElement(React.StrictMode, null, node);
-		this.act(() => root.render(strictNode));
+		this.act(() => {
+			root.render(strictNode)
+		});
 		return ScreenLocator.of(this.act, container);
 	}
 
