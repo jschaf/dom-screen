@@ -1,0 +1,8 @@
+name: JS Setup
+description: Setup JS for testing and compilation.
+runs:
+  using: composite
+  steps:
+    - name: setup bun
+      shell: bash
+      run: ${GITHUB_WORKSPACE}/.github/actions/js_setup/bun.sh

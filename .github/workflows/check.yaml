@@ -1,0 +1,29 @@
+name: check
+on: push
+
+jobs:
+  compile:
+    name: compile
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: JS setup
+        uses: ./.github/actions/js_setup
+
+      - name: tsc
+        run: bun exec tsc
+
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: JS setup
+        uses: ./.github/actions/js_setup
+
+      - name: bun test
+        run: bun test --cwd e2e
