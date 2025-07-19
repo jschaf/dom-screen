@@ -10,7 +10,6 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"pretty-format": "30.0.2",
 		"typescript": "5.8.3"
 	}
 }
