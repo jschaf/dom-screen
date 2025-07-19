@@ -11,7 +11,7 @@ const describeLocator = (loc: ScreenLocator) => {
 		return msg;
 	}
 
-	let msg = Testing.stringify(loc.root, { maxWidth: 10 });
+	let msg = Testing.stringify(loc.root);
 	const locs = loc.formatDescription();
 	if (locs !== '') {
 		msg += ` -> ${locs}`;

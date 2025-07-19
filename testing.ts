@@ -1,21 +1,12 @@
-import * as prettyFormat from 'pretty-format';
 import { tty } from './tty.ts';
 
 export const Testing = {
 	/** Stringify a value using pretty formatting. */
-	stringify(value: unknown, opts?: { maxWidth?: number }): string {
-		return prettyFormat.format(value, {
-			maxDepth: opts?.maxWidth ?? 10,
-			maxWidth: opts?.maxWidth ?? 80,
-			min: true,
-			plugins: [
-				prettyFormat.plugins.ReactTestComponent,
-				prettyFormat.plugins.ReactElement,
-				prettyFormat.plugins.DOMElement,
-				prettyFormat.plugins.DOMCollection,
-				prettyFormat.plugins.AsymmetricMatcher,
-			],
-		});
+	stringify(value: unknown): string {
+		if (value == null) {
+			return String(value);
+		}
+		return value.toString();
 	},
 
 	/** Canonically format a testing assertion. */
